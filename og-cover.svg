@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#070b14"/><stop offset="0.5" stop-color="#0d1330"/><stop offset="1" stop-color="#1a0f38"/>
+    </linearGradient>
+    <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#22d3ee"/><stop offset="0.5" stop-color="#8b5cf6"/><stop offset="1" stop-color="#f472b6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <g fill="none" stroke="#22d3ee" stroke-opacity="0.12" stroke-width="2">
+    <path d="M0 120h1200M0 240h1200M0 360h1200M0 480h1200M0 600h1200M150 0v630M300 0v630M450 0v630M600 0v630M750 0v630M900 0v630M1050 0v630"/>
+  </g>
+  <circle cx="1050" cy="110" r="180" fill="#22d3ee" opacity="0.14" filter="blur(60px)"/>
+  <circle cx="120" cy="520" r="200" fill="#8b5cf6" opacity="0.18" filter="blur(70px)"/>
+  <rect x="90" y="90" width="120" height="120" rx="32" fill="url(#grad)"/>
+  <text x="150" y="178" font-family="Segoe UI, Arial, sans-serif" font-size="72" font-weight="700" fill="#fff" text-anchor="middle">F</text>
+  <text x="240" y="168" font-family="Segoe UI, Arial, sans-serif" font-size="62" font-weight="700" fill="#fff">Farhan.</text>
+  <text x="240" y="250" font-family="Segoe UI, Arial, sans-serif" font-size="44" font-weight="700" fill="url(#grad)">AI ENGINEER &amp; DEVELOPER</text>
+  <text x="240" y="320" font-family="Segoe UI, Arial, sans-serif" font-size="30" fill="#9aa7bd">Web Development · Automation · AI Solutions</text>
+  <text x="240" y="560" font-family="Segoe UI, Arial, sans-serif" font-size="24" fill="#6b7a93">farhanahmed.dev</text>
+</svg>

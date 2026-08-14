@@ -1,0 +1,4 @@
+# Netlify config — no build step needed, this is a plain static site
+[build]
+  command = "echo 'No build step required'"
+  publish = "."

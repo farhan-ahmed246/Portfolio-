@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a2e2a"/><stop offset="1" stop-color="#0e3d36"/>
+    </linearGradient>
+    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#34d399"/><stop offset="1" stop-color="#22d3ee"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="750" fill="url(#bg)"/>
+  <g fill="none" stroke="#34d399" stroke-opacity="0.14" stroke-width="2">
+    <circle cx="1050" cy="640" r="90"/><circle cx="120" cy="120" r="70"/>
+    <path d="M0 180c300 40 400-40 700 0s500 0 500 0"/>
+  </g>
+  <g transform="translate(600 320)">
+    <rect x="-280" y="-160" width="560" height="320" rx="24" fill="#0d1b26"/>
+    <rect x="-280" y="-160" width="560" height="46" rx="24" fill="#12242f"/>
+    <circle cx="-250" cy="-137" r="8" fill="#f87171"/>
+    <circle cx="-226" cy="-137" r="8" fill="#fbbf24"/>
+    <circle cx="-202" cy="-137" r="8" fill="#34d399"/>
+    <rect x="-240" y="-86" width="120" height="80" rx="10" fill="#152d3c"/>
+    <rect x="-240" y="-64" width="60" height="10" rx="5" fill="#22d3ee" opacity="0.7"/>
+    <rect x="-240" y="-44" width="90" height="10" rx="5" fill="#ffffff" opacity="0.25"/>
+    <rect x="-100" y="-86" width="120" height="80" rx="10" fill="#152d3c"/>
+    <rect x="-100" y="-64" width="70" height="10" rx="5" fill="#34d399" opacity="0.7"/>
+    <rect x="-100" y="-44" width="80" height="10" rx="5" fill="#ffffff" opacity="0.25"/>
+    <rect x="40" y="-86" width="120" height="80" rx="10" fill="#152d3c"/>
+    <rect x="40" y="-64" width="50" height="10" rx="5" fill="#a78bfa" opacity="0.7"/>
+    <rect x="40" y="-44" width="95" height="10" rx="5" fill="#ffffff" opacity="0.25"/>
+    <g transform="translate(-240 40)">
+      <rect x="0" y="40" width="46" height="90" rx="6" fill="url(#acc)" opacity="0.9"/>
+      <rect x="60" y="10" width="46" height="120" rx="6" fill="#34d399" opacity="0.8"/>
+      <rect x="120" y="60" width="46" height="70" rx="6" fill="#a78bfa" opacity="0.8"/>
+      <rect x="180" y="0" width="46" height="130" rx="6" fill="#22d3ee" opacity="0.8"/>
+      <rect x="240" y="30" width="46" height="100" rx="6" fill="#f472b6" opacity="0.8"/>
+      <path d="M0 150h300" stroke="#ffffff" stroke-opacity="0.3" stroke-width="3"/>
+    </g>
+  </g>
+  <text x="600" y="665" font-family="Segoe UI, Arial, sans-serif" font-size="46" font-weight="700" fill="#34d399" text-anchor="middle" letter-spacing="6">PYTHON DASHBOARD</text>
+</svg>

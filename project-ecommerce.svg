@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3d1c08"/><stop offset="1" stop-color="#552c08"/>
+    </linearGradient>
+    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f59e0b"/><stop offset="1" stop-color="#ef4444"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="750" fill="url(#bg)"/>
+  <g fill="none" stroke="#f59e0b" stroke-opacity="0.14" stroke-width="2">
+    <circle cx="160" cy="140" r="80"/><circle cx="1040" cy="620" r="90"/>
+  </g>
+  <g transform="translate(600 330)">
+    <g>
+      <rect x="-170" y="-150" width="220" height="300" rx="20" fill="#14100a"/>
+      <rect x="-140" y="-120" width="160" height="170" rx="14" fill="url(#acc)" opacity="0.85"/>
+      <rect x="-140" y="40" width="130" height="18" rx="9" fill="#fff" opacity="0.6"/>
+      <rect x="-140" y="70" width="90" height="18" rx="9" fill="#f59e0b" opacity="0.9"/>
+      <circle cx="80" cy="-150" r="34" fill="#ef4444"/>
+      <text x="80" y="-136" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="700" fill="#fff" text-anchor="middle">2</text>
+    </g>
+    <g>
+      <rect x="90" y="-170" width="220" height="340" rx="20" fill="#14100a"/>
+      <rect x="120" y="-140" width="160" height="200" rx="14" fill="#22d3ee" opacity="0.8"/>
+      <rect x="120" y="50" width="130" height="18" rx="9" fill="#fff" opacity="0.6"/>
+      <rect x="120" y="80" width="90" height="18" rx="9" fill="#f59e0b" opacity="0.9"/>
+      <path d="M60 130l24 50 40 8-28 30 6 40-42-24-42 24 6-40-28-30 40-8z" fill="#fbbf24" transform="translate(60 -20)"/>
+    </g>
+    <g transform="translate(-520 110)">
+      <rect x="0" y="0" width="280" height="70" rx="16" fill="#14100a"/>
+      <circle cx="44" cy="35" r="16" fill="#22d3ee" opacity="0.85"/>
+      <rect x="74" y="22" width="150" height="12" rx="6" fill="#fff" opacity="0.5"/>
+      <rect x="74" y="42" width="100" height="12" rx="6" fill="#fff" opacity="0.3"/>
+    </g>
+  </g>
+  <text x="600" y="665" font-family="Segoe UI, Arial, sans-serif" font-size="46" font-weight="700" fill="#fbbf24" text-anchor="middle" letter-spacing="6">E-COMMERCE STORE</text>
+</svg>
