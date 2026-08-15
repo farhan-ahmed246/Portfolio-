@@ -11,7 +11,6 @@
 
   // 👉 Web3Forms access key — form submissions go to fmukhtar420@gmail.com
   //    (get / change it anytime at https://web3forms.com)
-  var WEB3FORMS_ACCESS_KEY = '99b9c475-6d69-4d35-b369-4934590623c4';
 
   var SKILLS = [
     { name: 'HTML',                level: 96 },
@@ -460,11 +459,12 @@
   /* ------------------------------------------------------------------
      CONTACT — Web3Forms
      ------------------------------------------------------------------ */
+    /* ------------------------------------------------------------------
+     CONTACT — Formspree
+     ------------------------------------------------------------------ */
   function initContact() {
     var form = $('#contactForm');
     if (!form) return;
-
-    $('#accessKey').value = WEB3FORMS_ACCESS_KEY;
 
     var nameInput = $('#contactName');
     var emailInput = $('#contactEmail');
@@ -484,95 +484,146 @@
 
     function validate() {
       var ok = true;
+
       var name = nameInput.value.trim();
       var email = emailInput.value.trim();
       var message = messageInput.value.trim();
 
-      if (name.length < 2) { setError(nameInput, $('#nameError'), 'Please enter your name.'); ok = false; }
-      else clearError(nameInput, $('#nameError'));
+      if (name.length < 2) {
+        setError(
+          nameInput,
+          $('#nameError'),
+          'Please enter your name.'
+        );
+        ok = false;
+      } else {
+        clearError(nameInput, $('#nameError'));
+      }
 
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { setError(emailInput, $('#emailError'), 'Please enter a valid email.'); ok = false; }
-      else clearError(emailInput, $('#emailError'));
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+        setError(
+          emailInput,
+          $('#emailError'),
+          'Please enter a valid email.'
+        );
+        ok = false;
+      } else {
+        clearError(emailInput, $('#emailError'));
+      }
 
-      if (message.length < 10) { setError(messageInput, $('#messageError'), 'Message should be at least 10 characters.'); ok = false; }
-      else clearError(messageInput, $('#messageError'));
+      if (message.length < 10) {
+        setError(
+          messageInput,
+          $('#messageError'),
+          'Message should be at least 10 characters.'
+        );
+        ok = false;
+      } else {
+        clearError(messageInput, $('#messageError'));
+      }
 
       return ok;
     }
 
-    // Live-clear errors as the user types
+    /* Clear errors while typing */
     [nameInput, emailInput, messageInput].forEach(function (input) {
       input.addEventListener('input', function () {
         input.classList.remove('invalid');
-        var map = { contactName: '#nameError', contactEmail: '#emailError', contactMessage: '#messageError' };
-        var errEl = $(map[input.id]);
-        if (errEl) errEl.textContent = '';
+
+        var map = {
+          contactName: '#nameError',
+          contactEmail: '#emailError',
+          contactMessage: '#messageError'
+        };
+
+        var errorEl = $(map[input.id]);
+
+        if (errorEl) {
+          errorEl.textContent = '';
+        }
+
         status.textContent = '';
         status.className = 'form-status';
       });
     });
 
+    /* Submit form */
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+
       status.textContent = '';
       status.className = 'form-status';
 
-      // Honeypot: bots fill hidden fields, humans don't
-      if (form.querySelector('input[name="botcheck"]').checked) {
-        showToast('Message sent successfully!', 'success');
-        form.reset();
+      if (!validate()) {
         return;
       }
 
-      if (!validate()) return;
-
-      if (WEB3FORMS_ACCESS_KEY === 'PASTE_YOUR_ACCESS_KEY_HERE') {
-        status.textContent = '⚠ Web3Forms access key is not set yet. See the note in js/main.js.';
-        status.className = 'form-status error';
-        return;
-      }
-
-      // Loading state
       submitBtn.disabled = true;
       submitBtn.classList.add('loading');
 
-      var payload = {
-        access_key: WEB3FORMS_ACCESS_KEY,
-        name: nameInput.value.trim(),
-        email: emailInput.value.trim(),
-        message: messageInput.value.trim(),
-        subject: 'New message from Farhan\'s Portfolio',
-        from_name: 'Farhan Portfolio'
-      };
+      var formData = new FormData(form);
 
-      fetch('https://api.web3forms.com/submit', {
+      fetch(form.action, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(payload)
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
       })
-        .then(function (res) { return res.json().then(function (data) { return { ok: res.ok, data: data }; }); })
-        .then(function (result) {
-          if (result.ok && result.data && result.data.success) {
-            form.reset();
-            status.textContent = '✓ Message sent! I\'ll get back to you soon.';
-            status.className = 'form-status success';
-            showToast('Message sent successfully!', 'success');
-          } else {
-            throw new Error((result.data && result.data.message) || 'Submission failed');
+        .then(function (response) {
+          if (response.ok) {
+            return response.json().catch(function () {
+              return {};
+            });
           }
+
+          return response.json()
+            .catch(function () {
+              return {};
+            })
+            .then(function (data) {
+              throw new Error(
+                data.error ||
+                data.message ||
+                'Form submission failed.'
+              );
+            });
         })
-        .catch(function (err) {
-          status.textContent = '✗ ' + (err && err.message ? err.message : 'Something went wrong. Please try again.');
+
+        .then(function () {
+          form.reset();
+
+          status.textContent =
+            "✓ Message sent! I'll get back to you soon.";
+
+          status.className = 'form-status success';
+
+          showToast(
+            'Message sent successfully!',
+            'success'
+          );
+        })
+
+        .catch(function (error) {
+          console.error('Formspree error:', error);
+
+          status.textContent =
+            '✗ Could not send the message. Please try again.';
+
           status.className = 'form-status error';
-          showToast('Could not send the message. Please try again.', 'error');
+
+          showToast(
+            'Could not send the message. Please try again.',
+            'error'
+          );
         })
+
         .finally(function () {
           submitBtn.disabled = false;
           submitBtn.classList.remove('loading');
         });
     });
   }
-
   /* ------------------------------------------------------------------
      TOAST
      ------------------------------------------------------------------ */
