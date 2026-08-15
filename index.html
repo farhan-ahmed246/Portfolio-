@@ -331,56 +331,147 @@
     </section>
 
     <!-- ===== CONTACT ===== -->
-    <section class="section" id="contact">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="section-tag">Contact Me</span>
-          <h2 class="section-title">Get in <span class="gradient-text">touch</span></h2>
-          <p class="section-desc">Send me a message — I'll get back to you as soon as possible.</p>
+  <!-- ===== CONTACT ===== -->
+<section class="section" id="contact">
+  <div class="container">
+
+    <div class="section-head reveal">
+      <span class="section-tag">Contact Me</span>
+      <h2 class="section-title">
+        Get in <span class="gradient-text">touch</span>
+      </h2>
+      <p class="section-desc">
+        Send me a message — I'll get back to you as soon as possible.
+      </p>
+    </div>
+
+    <div class="contact-wrap glass reveal">
+
+      <form
+        id="contactForm"
+        class="contact-form"
+        action="https://formspree.io/f/maewdwlo"
+        method="POST"
+      >
+
+        <!-- Email subject -->
+        <input
+          type="hidden"
+          name="subject"
+          value="New message from Farhan's Portfolio"
+        />
+
+        <div class="form-row">
+
+          <!-- Name -->
+          <div class="form-group">
+            <label for="contactName">Your Name</label>
+
+            <input
+              type="text"
+              id="contactName"
+              name="name"
+              placeholder="John Doe"
+              autocomplete="name"
+              required
+            />
+
+            <span
+              class="form-error"
+              id="nameError"
+            ></span>
+          </div>
+
+          <!-- Email -->
+          <div class="form-group">
+            <label for="contactEmail">Your Email</label>
+
+            <input
+              type="email"
+              id="contactEmail"
+              name="email"
+              placeholder="john@example.com"
+              autocomplete="email"
+              required
+            />
+
+            <span
+              class="form-error"
+              id="emailError"
+            ></span>
+          </div>
+
         </div>
 
-        <div class="contact-wrap glass reveal">
-          <form id="contactForm" class="contact-form" novalidate>
-            <input type="hidden" name="access_key" value="" id="accessKey" />
-            <input type="hidden" name="subject" value="New message from Farhan's Portfolio" />
-            <input type="hidden" name="from_name" value="Farhan Portfolio" />
-            <!-- Honeypot to trick spam bots (hidden from humans) -->
-            <input type="checkbox" name="botcheck" class="hp-field" tabindex="-1" autocomplete="off" />
+        <!-- Message -->
+        <div class="form-group">
 
-            <div class="form-row">
-              <div class="form-group">
-                <label for="contactName">Your Name</label>
-                <input type="text" id="contactName" name="name" placeholder="John Doe" autocomplete="name" required />
-                <span class="form-error" id="nameError"></span>
-              </div>
-              <div class="form-group">
-                <label for="contactEmail">Your Email</label>
-                <input type="email" id="contactEmail" name="email" placeholder="john@example.com" autocomplete="email" required />
-                <span class="form-error" id="emailError"></span>
-              </div>
-            </div>
+          <label for="contactMessage">Message</label>
 
-            <div class="form-group">
-              <label for="contactMessage">Message</label>
-              <textarea id="contactMessage" name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
-              <span class="form-error" id="messageError"></span>
-            </div>
+          <textarea
+            id="contactMessage"
+            name="message"
+            rows="5"
+            placeholder="Tell me about your project..."
+            required
+          ></textarea>
 
-            <button type="submit" class="btn btn-primary btn-block" id="contactSubmit">
-              <span class="btn-label">Send Message</span>
-              <span class="btn-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></svg>
-              </span>
-              <span class="btn-spinner" aria-hidden="true"></span>
-            </button>
+          <span
+            class="form-error"
+            id="messageError"
+          ></span>
 
-            <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
-          </form>
         </div>
-      </div>
-    </section>
-  </main>
 
+        <!-- Submit button -->
+        <button
+          type="submit"
+          class="btn btn-primary btn-block"
+          id="contactSubmit"
+        >
+
+          <span class="btn-label">
+            Send Message
+          </span>
+
+          <span class="btn-icon">
+
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="m22 2-7 20-4-9-9-4z"/>
+              <path d="M22 2 11 13"/>
+            </svg>
+
+          </span>
+
+          <span
+            class="btn-spinner"
+            aria-hidden="true"
+          ></span>
+
+        </button>
+
+        <!-- Form status -->
+        <p
+          class="form-status"
+          id="formStatus"
+          role="status"
+          aria-live="polite"
+        ></p>
+
+      </form>
+
+    </div>
+
+  </div>
+</section>
   <!-- ===== FOOTER ===== -->
   <footer class="footer">
     <div class="container footer-inner">
