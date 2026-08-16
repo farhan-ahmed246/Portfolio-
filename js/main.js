@@ -1,11 +1,18 @@
 /* FARHAN PORTFOLIO — main.js */
-(function () {
-  'use strict';
-
-  var SKILLS = [
-    ['HTML',96],['CSS',93],['JavaScript',90],['TypeScript',85],['Python',87],
-    ['Prompt Engineering',94],['N8N',86],['Zapier',88],['Modern Python Web Dev',84],
-    ['Web Development',92],['API Integration',88],['AI Chatbot Development',89],
-    ['Full Stack Development',86],['Backend Development',85],['Frontend Development',90]
-  ];
-  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce
+(function(){'use strict';
+var SKILLS=[['HTML',96],['CSS',93],['JavaScript',90],['TypeScript',85],['Python',87],['Prompt Engineering',94],['N8N',86],['Zapier',88],['Modern Python Web Dev',84],['Web Development',92],['API Integration',88],['AI Chatbot Development',89],['Full Stack Development',86],['Backend Development',85],['Frontend Development',90]];
+var $=function(s,c){return(c||document).querySelector(s)},$$=function(s,c){return[].slice.call((c||document).querySelectorAll(s))};
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function preloader(){var p=$('#preloader');if(!p)return;setTimeout(function(){p.classList.add('done')},1200);window.addEventListener('load',function(){p.classList.add('done')})}
+function header(){var h=$('#header'),t=$('#navToggle'),m=$('#navMenu');if(h)window.addEventListener('scroll',function(){h.classList.toggle('scrolled',scrollY>40)},{passive:true});if(!t||!m)return;t.onclick=function(){var o=m.classList.toggle('open');t.classList.toggle('open',o);t.setAttribute('aria-expanded',o)};$$('.nav-link',m).forEach(function(a){a.onclick=function(){m.classList.remove('open');t.classList.remove('open')}})}
+function scrollspy(){var ss=$$('main section[id]'),ls=$$('.nav-link[href^="#"]');function u(){var p=scrollY+140,c=ss[0]?ss[0].id:'';ss.forEach(function(s){if(s.offsetTop<=p)c=s.id});ls.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+c)})}window.addEventListener('scroll',u,{passive:true});u()}
+function typing(){var x=$('#typedText'),l=$('#revealLine');if(!x||!l)return;var full='Hi, I am Farhan. I am 30 years old.';x.textContent='';var i=0;function go(){if(i>=full.length){l.classList.add('show');return}x.textContent=full.slice(0,++i);setTimeout(go,35)}go()}
+function reveal(){var e=$$('.reveal');if(!('IntersectionObserver'in window)){e.forEach(function(x){x.classList.add('visible')});return}var io=new IntersectionObserver(function(a){a.forEach(function(x){if(x.isIntersecting){x.target.classList.add('visible');io.unobserve(x.target)}})},{threshold:.08});e.forEach(function(x){io.observe(x)})}
+function skills(){var g=$('#skillsGrid');if(!g)return;g.innerHTML='';SKILLS.forEach(function(s){var e=document.createElement('div');e.className='skill-item visible';e.innerHTML='<div class="skill-head"><span class="skill-name"><span class="skill-dot"></span>'+esc(s[0])+'</span><span class="skill-level">'+s[1]+'%</span></div><div class="skill-bar"><span class="skill-bar-fill" style="width:'+s[1]+'%"></span></div>';g.appendChild(e)})}
+function projects(){var g=$('#projectsGrid');if(!g||typeof PROJECTS==='undefined')return;g.innerHTML='';PROJECTS.forEach(function(p){var e=document.createElement('article');e.className='project-card reveal visible';e.innerHTML='<div class="project-image-wrap"><img class="project-image" src="'+esc(p.image)+'" alt="'+esc(p.title)+'" loading="lazy"><div class="project-overlay"><span>View project ↗</span></div></div><div class="project-body"><h3>'+esc(p.title)+'</h3><p>'+esc(p.description)+'</p><div class="project-tags">'+(p.tags||[]).map(function(t){return'<span class="project-tag">'+esc(t)+'</span>'}).join('')+'</div></div>';g.appendChild(e)})}
+function contact(){var f=$('#contactForm');if(!f)return;var n=$('#contactName'),em=$('#contactEmail'),m=$('#contactMessage'),b=$('#contactSubmit'),st=$('#formStatus');f.onsubmit=function(e){e.preventDefault();if(!n.value.trim()||!em.value.trim()||!m.value.trim())return;b.disabled=true;st.textContent='Sending...';var d=new FormData(f);d.set('access_key','99b9c475-6d69-4d35-b369-4934590623c4');d.set('subject','New Portfolio Contact Message');fetch('https://api.web3forms.com/submit',{method:'POST',body:d,headers:{Accept:'application/json'}}).then(function(r){return r.json()}).then(function(j){if(!j.success)throw Error(j.message||'Message could not be sent');f.reset();st.textContent='✓ Message sent! I will get back to you soon.';st.className='form-status success'}).catch(function(e){st.textContent='✗ '+e.message;st.className='form-status error'}).finally(function(){b.disabled=false})}}
+function modal(){var m=$('#projectModal');if(!m)return;var close=function(){m.classList.remove('open');document.body.classList.remove('modal-open')};var c=$('.modal-close',m),b=$('.modal-backdrop',m);if(c)c.onclick=close;if(b)b.onclick=close;document.addEventListener('keydown',function(e){if(e.key==='Escape')close()})}
+function marquee(){var t=$('.marquee-track');if(t)t.innerHTML+=t.innerHTML}
+function boot(){preloader();header();scrollspy();typing();skills();projects();contact();modal();marquee();setTimeout(reveal,50)}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
+})();
