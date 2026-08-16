@@ -5,7 +5,36 @@ var $=function(s,c){return(c||document).querySelector(s)},$$=function(s,c){retur
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\"/g,'&quot;')}
 function preloader(){var p=$('#preloader');if(!p)return;setTimeout(function(){p.classList.add('done')},1200);window.addEventListener('load',function(){p.classList.add('done')})}
 function header(){var h=$('#header'),t=$('#navToggle'),m=$('#navMenu');if(h)window.addEventListener('scroll',function(){h.classList.toggle('scrolled',scrollY>40)},{passive:true});if(!t||!m)return;t.onclick=function(){var o=m.classList.toggle('open');t.classList.toggle('open',o);t.setAttribute('aria-expanded',o)};$$('.nav-link',m).forEach(function(a){a.onclick=function(){m.classList.remove('open');t.classList.remove('open')}})}
-function scrollspy(){var ss=$$('main section[id]'),ls=$$('.nav-link[href^="#"]');function u(){var p=scrollY+140,c=ss[0]?ss[0].id:'';ss.forEach(function(s){if(s.offsetTop<=p)c=s.id});ls.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+c)})}window.addEventListener('scroll',u,{passive:true});u()}
+function navigation(){
+  var links=$$('a[href^="#"]');
+  links.forEach(function(a){
+    a.addEventListener('click',function(e){
+      var id=a.getAttribute('href');
+      if(!id||id==='#')return;
+      var target=$(id);
+      if(!target)return;
+      e.preventDefault();
+      var header=$('#header');
+      var offset=(header?header.offsetHeight:72)+12;
+      var y=target.getBoundingClientRect().top+window.pageYOffset-offset;
+      window.scrollTo({top:Math.max(0,y),behavior:'smooth'});
+      history.replaceState(null,'',id);
+    });
+  });
+}
+function scrollspy(){
+  var sections=$$('main section[id]'),links=$$('.nav-link[href^="#"]');
+  if(!sections.length||!links.length)return;
+  function setActive(id){links.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+id)})}
+  function update(){
+    var point=window.scrollY+(window.innerHeight*0.32),current=sections[0].id;
+    sections.forEach(function(s){if(s.offsetTop<=point)current=s.id});
+    setActive(current);
+  }
+  window.addEventListener('scroll',update,{passive:true});
+  window.addEventListener('resize',update,{passive:true});
+  update();
+}
 function typing(){var x=$('#typedText'),l=$('#revealLine');if(!x||!l)return;var full='Hi, I am Farhan. I am 30 years old.';x.textContent='';var i=0;function go(){if(i>=full.length){l.classList.add('show');return}x.textContent=full.slice(0,++i);setTimeout(go,35)}go()}
 function profileImage(){var hero=$('.hero-inner'),badge=$('.hero-badge',hero);if(!hero||!badge||$('.hero-profile',hero))return;var wrap=document.createElement('div');wrap.className='hero-profile';wrap.innerHTML='<img src="https://i.ibb.co/jcWYBQ2/farhan-fiver-profile-pic.png" alt="Farhan Ahmed profile photo" loading="eager">';var style=document.createElement('style');style.textContent='.hero-profile{display:flex;justify-content:center;margin:0 0 28px}.hero-profile img{width:150px;height:150px;object-fit:cover;border-radius:50%;border:3px solid rgba(34,211,238,.75);box-shadow:0 0 0 8px rgba(139,92,246,.10),0 18px 55px rgba(34,211,238,.22);background:#0c1322}.hero-profile img:hover{transform:translateY(-3px);transition:transform .25s ease}@media(max-width:600px){.hero-profile img{width:120px;height:120px}}';document.head.appendChild(style);hero.insertBefore(wrap,badge)}
 function reveal(){var e=$$('.reveal');if(!('IntersectionObserver'in window)){e.forEach(function(x){x.classList.add('visible')});return}var io=new IntersectionObserver(function(a){a.forEach(function(x){if(x.isIntersecting){x.target.classList.add('visible');io.unobserve(x.target)}})},{threshold:.08});e.forEach(function(x){io.observe(x)})}
@@ -15,6 +44,6 @@ function openProject(p){var m=$('#projectModal'),img=$('#modalImage'),title=$('#
 function contact(){var f=$('#contactForm');if(!f)return;var n=$('#contactName'),em=$('#contactEmail'),m=$('#contactMessage'),b=$('#contactSubmit'),st=$('#formStatus');f.onsubmit=function(e){e.preventDefault();if(!n.value.trim()||!em.value.trim()||!m.value.trim())return;b.disabled=true;st.textContent='Sending...';var d=new FormData(f);d.set('access_key','99b9c475-6d69-4d35-b369-4934590623c4');d.set('subject','New Portfolio Contact Message');fetch('https://api.web3forms.com/submit',{method:'POST',body:d,headers:{Accept:'application/json'}}).then(function(r){return r.json()}).then(function(j){if(!j.success)throw Error(j.message||'Message could not be sent');f.reset();st.textContent='✓ Message sent! I will get back to you soon.';st.className='form-status success'}).catch(function(e){st.textContent='✗ '+e.message;st.className='form-status error'}).finally(function(){b.disabled=false})}}
 function modal(){var m=$('#projectModal');if(!m)return;var close=function(){m.classList.remove('open');m.hidden=true;document.body.classList.remove('modal-open')};var c=$('.modal-close',m),b=$('.modal-backdrop',m),ca=$('#modalCloseAlt');if(c)c.onclick=close;if(b)b.onclick=close;if(ca)ca.onclick=close;document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden)close()})}
 function marquee(){var t=$('.marquee-track');if(t)t.innerHTML+=t.innerHTML}
-function boot(){preloader();header();scrollspy();profileImage();typing();skills();projects();contact();modal();marquee();setTimeout(reveal,50)}
+function boot(){preloader();header();navigation();scrollspy();profileImage();typing();skills();projects();contact();modal();marquee();setTimeout(reveal,50)}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
 })();
