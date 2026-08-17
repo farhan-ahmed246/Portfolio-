@@ -1,48 +1,11 @@
-/* ===========================================================================
-   PROJECTS — edit this file to add / change your projects
-   =========================================================================== */
-
 const PROJECTS = [
-  {
-    title: "AI Chat Assistant",
-    description: "A smart conversational AI chatbot built with prompt engineering — understands context, remembers the conversation and answers like a human.",
-    longDescription: "A fully responsive AI chat assistant that uses structured prompt engineering to give accurate, context-aware answers.\n\nIt features streaming-style typing, conversation memory, quick-reply suggestions and a clean chat UI that works great on mobile and desktop. The prompt layer was carefully tuned to reduce hallucinations and keep answers on-topic.",
-    image: "assets/project-ai.svg",
-    tags: ["AI", "Prompt Engineering", "JavaScript"]
-  },
-  {
-    title: "Workflow Automation Hub",
-    description: "End-to-end automation workflows built with N8N and Zapier — connecting 15+ apps to save hours of manual work every week.",
-    longDescription: "A set of production automation workflows connecting CRMs, email, Google Sheets and AI tools.\n\nIncludes lead capture → AI scoring → follow-up email flows, invoice reminders, and social media auto-posting pipelines. Everything runs with error handling, retries and human-in-the-loop approval steps.",
-    image: "assets/project-automation.svg",
-    tags: ["N8N", "Zapier", "Automation"]
-  },
-  {
-    title: "Modern Responsive Website",
-    description: "A pixel-perfect, mobile-first business website with smooth animations, dark mode and a 100/100 Lighthouse performance score.",
-    longDescription: "A modern business website built with clean HTML, CSS and JavaScript — no heavy frameworks.\n\nFeatures include scroll animations, a sticky header, an interactive contact form, SEO meta tags and a layout that adapts perfectly from small phones to large TV screens.",
-    image: "assets/project-web.svg",
-    tags: ["HTML", "CSS", "JavaScript", "Responsive"]
-  },
-  {
-    title: "Python Data Dashboard",
-    description: "An interactive analytics dashboard in Python that turns raw CSV data into live charts and exportable reports.",
-    longDescription: "A Python dashboard that reads CSV/Excel data and renders interactive charts for sales, traffic and performance metrics.\n\nBuilt with modern Python web development practices — clean data pipelines, reusable components and automatic report generation (PDF/Excel export).",
-    image: "assets/project-python.svg",
-    tags: ["Python", "Data", "Dashboard"]
-  },
-  {
-    title: "AI Content Generator",
-    description: "Generate blog posts, captions and product descriptions in seconds with a prompt-engineered AI writing tool.",
-    longDescription: "A prompt-engineered content tool that generates high-quality blog intros, social captions and product descriptions.\n\nIncludes tone controls, keyword targeting, plagiarism-safe rewriting and one-click copy. The prompt system chains multiple steps — outline first, then expand — for much better results than a single prompt.",
-    image: "assets/project-content.svg",
-    tags: ["AI", "Prompt Engineering", "Content"]
-  },
-  {
-    title: "E-Commerce Storefront",
-    description: "A fast, modern online store with product cards, filters, cart and a smooth checkout flow — built from scratch.",
-    longDescription: "A lightweight e-commerce storefront built with vanilla JavaScript.\n\nProduct grid with live search and category filters, an animated cart with quantity controls, and localStorage persistence so the cart survives page reloads. Designed mobile-first with accessibility in mind.",
-    image: "assets/project-ecommerce.svg",
-    tags: ["JavaScript", "E-Commerce", "UI/UX"]
-  }
+{title:"AI Chatbot Assistant",description:"A conversational AI assistant built with prompt engineering and a clean responsive chat interface for context-aware conversations.",longDescription:"A practical AI chatbot project using structured prompting, context handling and a modern responsive chat interface.",image:"assets/project-ai.svg",tags:["AI","Chatbot","Prompt Engineering","JavaScript"]},
+{title:"AI Quiz Game",description:"An interactive quiz game with questions, answer selection, score tracking and a polished learning-focused interface.",longDescription:"A browser quiz application designed for engaging learning with interactive questions, scoring and responsive UI.",image:"assets/project-web.svg",tags:["JavaScript","Quiz","UI/UX","Web Development"]},
+{title:"Currency Exchange App",description:"A currency conversion application supporting 25 currencies with a simple responsive interface for quick exchange calculations.",longDescription:"A practical currency exchange project for selecting currencies and calculating conversions through a clean user interface.",image:"assets/project-python.svg",tags:["Python","Currency API","Streamlit","API Integration"]},
+{title:"PDF Generator",description:"A Python PDF generation tool that creates clean downloadable documents from user-provided information.",longDescription:"A utility project for generating structured PDF documents programmatically with clean formatting and reliable file generation.",image:"assets/project-content.svg",tags:["Python","PDF","Automation","File Generation"]},
+{title:"Airplane Ticket Registration System",description:"A ticket registration application for passenger information and flight booking details with a simple user-friendly workflow.",longDescription:"A practical registration project demonstrating form handling, validation, structured data and a flight booking workflow.",image:"assets/project-automation.svg",tags:["Python","Forms","Data Management","UI"]},
+{title:"Real-Time Up & Down Report",description:"A reporting dashboard that presents changing values and performance information with clear visual up/down indicators.",longDescription:"A dashboard-style project focused on monitoring changing values and presenting movement clearly through status indicators and reports.",image:"assets/project-python.svg",tags:["Python","Dashboard","Reports","Data Visualization"]},
+{title:"Super Collection — E-Commerce Store",description:"A premium Pakistani fashion e-commerce experience with products, authentication, cart management, orders and Firebase integration.",longDescription:"A modern shopping experience with product browsing, authentication, cart management, order history and Firebase-backed data handling.",image:"assets/project-ecommerce.svg",tags:["React","Firebase","E-Commerce","JavaScript"]},
+{title:"Personal AI Engineer Portfolio",description:"A responsive portfolio showcasing AI engineering, web development, automation skills, projects and professional contact links.",longDescription:"A responsive animated portfolio with project cards, skills, social links, contact form, smooth navigation and GitHub Pages deployment.",image:"assets/project-web.svg",tags:["HTML","CSS","JavaScript","GitHub Pages"]},
+{title:"n8n AI Workflow Automation",description:"AI-powered workflow automation connecting apps, APIs and business processes to reduce repetitive manual work.",longDescription:"Automation workflows built with n8n, APIs and AI services to connect repetitive tasks into structured automated pipelines.",image:"assets/project-automation.svg",tags:["n8n","AI Automation","APIs","Workflows"]}
 ];
