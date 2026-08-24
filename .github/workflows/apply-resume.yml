@@ -22,7 +22,6 @@ jobs:
 
           p = Path('js/main.js')
           s = p.read_text(encoding='utf-8')
-
           s = s.replace("var value = 'Hi, I am Farhan. I am 30 years old.';", "var value = 'Hi, I am Farhan.';")
 
           marker = "  function start() {"
@@ -57,10 +56,16 @@ jobs:
           s = s.replace('    header();\n    navigation();', '    header();\n    resumeFeature();\n    navigation();')
           p.write_text(s, encoding='utf-8')
 
+          h = Path('index.html')
+          hs = h.read_text(encoding='utf-8')
+          hs = hs.replace('Hi, I am Farhan. I am 30 years old. AI Engineer and Developer.', 'Hi, I am Farhan. AI Engineer and Developer.')
+          hs = hs.replace('Hi, I am Farhan. I am 30 years old.', 'Hi, I am Farhan.')
+          h.write_text(hs, encoding='utf-8')
+
       - name: Commit changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add js/main.js
+          git add js/main.js index.html
           git diff --cached --quiet || git commit -m "Add resume tab and remove age from hero [skip ci]"
           git push
