@@ -116,7 +116,7 @@
     var reveal = one('#revealLine');
     if (!text || !reveal) return;
 
-    var value = 'Hi, I am Farhan. I am 30 years old.';
+    var value = 'Hi, I am Farhan.';
     text.textContent = '';
     var index = 0;
 
