@@ -49,12 +49,11 @@ document.addEventListener('DOMContentLoaded',function(){
     if(!window.matchMedia||!window.matchMedia('(pointer:fine)').matches)return;
     if(document.querySelector('.minecraft-sword-cursor'))return;
     var style=document.createElement('style');
-    style.textContent='html.minecraft-cursor,html.minecraft-cursor *{cursor:none!important}.minecraft-sword-cursor{position:fixed;left:0;top:0;width:38px;height:38px;z-index:2147483647;pointer-events:none;opacity:1;filter:drop-shadow(2px 3px 2px rgba(0,0,0,.75));transform:translate(-5px,-5px) rotate(-35deg);transform-origin:18% 82%}.minecraft-sword-cursor svg{display:block;width:100%;height:100%;shape-rendering:crispEdges;image-rendering:pixelated;overflow:visible}.minecraft-sword-cursor .sword-glint{animation:swordGlint 1.5s steps(2,end) infinite}@keyframes swordGlint{0%,100%{opacity:.15}50%{opacity:1}}@media(max-width:900px){html.minecraft-cursor,html.minecraft-cursor *{cursor:auto!important}.minecraft-sword-cursor{display:none!important}}';
+    style.textContent='html.minecraft-cursor,html.minecraft-cursor *{cursor:none!important}.minecraft-sword-cursor{position:fixed;left:0;top:0;width:42px;height:42px;z-index:2147483647;pointer-events:none;opacity:1;transform:translate(-5px,-5px) rotate(-45deg);transform-origin:15% 85%;filter:drop-shadow(1px 2px 1px rgba(0,0,0,.55))}.minecraft-sword-cursor img{display:block;width:100%;height:100%;image-rendering:pixelated}.minecraft-sword-cursor .sword-glint{display:none}@media(max-width:900px){html.minecraft-cursor,html.minecraft-cursor *{cursor:auto!important}.minecraft-sword-cursor{display:none!important}}';
     document.head.appendChild(style);
     var sword=document.createElement('div'); sword.className='minecraft-sword-cursor';
-    sword.innerHTML='<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M7 0h3v2h1v2h1v2h1v2h-2V7h-1V5H9V3H7z" fill="#f8fafc"/><path d="M7 1h2v3h1v2h1v2H9V6H8V4H7z" fill="#94a3b8"/><path d="M6 8h7v2H6z" fill="#facc15"/><path d="M4 10h8v2H4z" fill="#8b5a2b"/><path d="M6 12h4v3H6z" fill="#5b3a29"/><path class="sword-glint" d="M8 1h1v4H8z" fill="#ffffff"/></svg>';
-    document.body.appendChild(sword);
-    document.documentElement.classList.add('minecraft-cursor');
+    sword.innerHTML='<img src="assets/minecraft-sword.svg?v=20260831" alt="">';
+    document.body.appendChild(sword); document.documentElement.classList.add('minecraft-cursor');
     document.addEventListener('mousemove',function(e){sword.style.left=e.clientX+'px';sword.style.top=e.clientY+'px'},{passive:true});
   }
 
