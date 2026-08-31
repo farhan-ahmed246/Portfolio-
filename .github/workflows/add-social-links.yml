@@ -1,0 +1,48 @@
+name: Add Social Links
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-social-links:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Add Upwork and portfolio links
+        shell: python
+        run: |
+          from pathlib import Path
+
+          path = Path("index.html")
+          text = path.read_text(encoding="utf-8")
+
+          if "class=\"social-name\">Upwork</span>" in text:
+              print("Social links already present.")
+              raise SystemExit(0)
+
+          marker = '''      <a href="https://payhip.com/b/tzlLv" target="_blank" rel="noopener noreferrer" class="social-card glass reveal">'''
+          if marker not in text:
+              raise SystemExit("Payhip social card marker not found; index.html was not changed.")
+
+          cards = '''      <a href="https://www.upwork.com/freelancers/~01b324c7549d7a077f?mp_source=share" target="_blank" rel="noopener noreferrer" class="social-card glass reveal"><span class="social-icon upwork" aria-hidden="true"><svg viewBox="0 0 64 64" fill="currentColor"><path d="M47.5 20.5c-5.2 0-9.2 3.1-11.5 8.1l-3.2-9.8h-7.1l4.7 14.5c-1.1 2.2-2.4 4.1-3.8 5.7-1.8-2.7-3-6.1-3.5-10.3h-7.2c.7 6.2 2.5 11.2 5.3 14.9-2.3 1.7-4.9 2.6-7.8 2.6-4.1 0-7.1-2.7-7.1-6.9 0-4.4 3-7.3 7.3-7.3 2.3 0 4.2.8 5.8 2.3v-7.4c-1.8-.9-3.8-1.3-6-1.3-8.2 0-14.1 5.7-14.1 13.7 0 8 5.8 13.6 14.1 13.6 4.8 0 9.2-1.7 12.7-5 3.5 2.9 7.7 4.5 12.4 4.5 8.6 0 14.8-5.8 14.8-14.1 0-8.2-5.8-13.8-13.8-13.8zm-.9 21.1c-2.6 0-5-.8-7-2.4 1.7-2.2 3.1-4.7 4.2-7.4 1.5-3.7 3.5-5.5 6-5.5 3.9 0 6.7 2.8 6.7 7.1 0 4.9-4.1 8.2-9.9 8.2z"/></svg></span><span class="social-name">Upwork</span><span class="social-handle">My Upwork Profile</span></a>
+      <a href="https://github.com/farhan-ahmed246/Portfolio-" target="_blank" rel="noopener noreferrer" class="social-card glass reveal"><span class="social-icon github"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-2.15c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.75 2.69 1.25 3.34.95.1-.74.4-1.25.72-1.53-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.59.23 2.76.11 3.05.73.81 1.18 1.04.77 2.1v3.11c0 .3.21.66.8.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg></span><span class="social-name">Portfolio GitHub</span><span class="social-handle">View source code</span></a>
+      <a href="https://farhan-ahmed246.github.io/Portfolio-/" target="_blank" rel="noopener noreferrer" class="social-card glass reveal"><span class="social-icon portfolio" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M2.8 12h18.4M12 2.5c2.5 2.6 3.8 5.8 3.8 9.5S14.5 18.9 12 21.5c-2.5-2.6-3.8-5.8-3.8-9.5S9.5 5.1 12 2.5z"/></svg></span><span class="social-name">Live Portfolio</span><span class="social-handle">farhan-ahmed246.github.io</span></a>
+'''
+
+          text = text.replace(marker, cards + marker, 1)
+          path.write_text(text, encoding="utf-8")
+      - name: Commit updated index.html
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git diff --cached --quiet && exit 0
+          git commit -m "Add Upwork and portfolio links to social section"
+          git push
