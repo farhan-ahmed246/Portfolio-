@@ -49,11 +49,12 @@ document.addEventListener('DOMContentLoaded',function(){
     if(!window.matchMedia||!window.matchMedia('(pointer:fine)').matches)return;
     if(document.querySelector('.minecraft-sword-cursor'))return;
     var style=document.createElement('style');
-    style.textContent='html.minecraft-cursor,html.minecraft-cursor *{cursor:none!important}.minecraft-sword-cursor{position:fixed;left:0;top:0;width:42px;height:42px;z-index:2147483647;pointer-events:none;opacity:1;transform:translate(-5px,-5px) rotate(-45deg);transform-origin:15% 85%;filter:drop-shadow(1px 2px 1px rgba(0,0,0,.55))}.minecraft-sword-cursor img{display:block;width:100%;height:100%;image-rendering:pixelated}.minecraft-sword-cursor .sword-glint{display:none}@media(max-width:900px){html.minecraft-cursor,html.minecraft-cursor *{cursor:auto!important}.minecraft-sword-cursor{display:none!important}}';
+    style.textContent='html.minecraft-cursor,html.minecraft-cursor *{cursor:none!important}.minecraft-sword-cursor{position:fixed;left:0;top:0;width:48px;height:48px;z-index:2147483647;pointer-events:none;opacity:1;filter:drop-shadow(2px 3px 2px rgba(0,0,0,.7));transform:translate(-7px,-7px);transform-origin:18% 82%}.minecraft-sword-cursor img{display:block;width:100%;height:100%;object-fit:contain;image-rendering:pixelated}.minecraft-sword-cursor .sword-glint{animation:swordGlint 1.5s steps(2,end) infinite}@keyframes swordGlint{0%,100%{opacity:.85}50%{opacity:1}}@media(max-width:900px){html.minecraft-cursor,html.minecraft-cursor *{cursor:auto!important}.minecraft-sword-cursor{display:none!important}}';
     document.head.appendChild(style);
     var sword=document.createElement('div'); sword.className='minecraft-sword-cursor';
-    sword.innerHTML='<img src="assets/minecraft-sword.svg?v=20260831" alt="">';
-    document.body.appendChild(sword); document.documentElement.classList.add('minecraft-cursor');
+    sword.innerHTML='<img src="minecraft-diamond-sword.png?v=2" alt="" draggable="false">';
+    document.body.appendChild(sword);
+    document.documentElement.classList.add('minecraft-cursor');
     document.addEventListener('mousemove',function(e){sword.style.left=e.clientX+'px';sword.style.top=e.clientY+'px'},{passive:true});
   }
 
