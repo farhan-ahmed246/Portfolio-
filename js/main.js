@@ -64,7 +64,7 @@
   function profileImage() {
     var hero = one('.hero-inner'), badge = one('.hero-badge', hero); if (!hero || !badge || one('.hero-profile', hero)) return;
     var wrap = document.createElement('div'); wrap.className = 'hero-profile';
-    wrap.innerHTML = '<img src="https://i.ibb.co/jcWYBQ2/farhan-fiver-profile-pic.png" alt="Farhan Ahmed profile photo" loading="eager">'; hero.insertBefore(wrap, badge);
+    wrap.innerHTML = '<img src="https://i.postimg.cc/rwwsfr4P/farahan-linkedin-profile-pic.png" alt="Farhan Ahmed profile photo" loading="eager">'; hero.insertBefore(wrap, badge);
     var style = document.createElement('style'); style.textContent = '.hero-profile{display:flex;justify-content:center;margin:0 0 28px}.hero-profile img{width:150px;height:150px;object-fit:cover;border-radius:50%;border:3px solid rgba(34,211,238,.75);box-shadow:0 0 0 8px rgba(139,92,246,.10),0 18px 55px rgba(34,211,238,.22);background:#0c1322}.hero-profile img:hover{transform:translateY(-3px);transition:transform .25s ease}@media(max-width:600px){.hero-profile img{width:120px;height:120px}}'; document.head.appendChild(style);
   }
 
