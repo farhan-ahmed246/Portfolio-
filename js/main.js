@@ -129,7 +129,7 @@
   function minecraftCursor() {
     var isTouch = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
     if (isTouch) return;
-    var cursorUrl = 'data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2232%22 height=%2232%22 viewBox=%220 0 32 32%22%3E%3Cpath d=%22M5 27 8 18 21 5l6 6L14 24l-9 3Z%22 fill=%22%23dbeafe%22 stroke=%22%23000%22 stroke-width=%222%22/%3E%3Cpath d=%22M18 8l6 6M14 24l-6-6%22 stroke=%22%237c3aed%22 stroke-width=%223%22/%3E%3Cpath d=%22M5 27l5-5M8 18l6 6%22 stroke=%22%23fbbf24%22 stroke-width=%223%22/%3E%3C/svg%3E';
+    var cursorUrl = 'assets/sword-cursor-32.png';
     var style = document.createElement('style');
     style.id = 'minecraft-sword-cursor-style';
     style.textContent = 'html,body,body *{cursor:url("' + cursorUrl + '") 2 2, auto !important;} input,textarea,select{cursor:text !important;} button,a,[role="button"]{cursor:url("' + cursorUrl + '") 2 2, pointer !important;}';
