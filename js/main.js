@@ -126,51 +126,8 @@
 
   function marquee() { var track = one('.marquee-track'); if (track) track.innerHTML = track.innerHTML + track.innerHTML; }
 
-  function minecraftCursor() {
-    // Use the portfolio's existing animated dot/ring cursor elements.
-    if (!window.matchMedia || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    var dot = document.createElement('div');
-    var ring = document.createElement('div');
-    dot.className = 'cursor-dot';
-    ring.className = 'cursor-ring';
-    dot.setAttribute('aria-hidden', 'true');
-    ring.setAttribute('aria-hidden', 'true');
-    document.body.appendChild(ring);
-    document.body.appendChild(dot);
-    document.documentElement.classList.add('custom-cursor');
-
-    function move(event) {
-      var x = event.clientX;
-      var y = event.clientY;
-      dot.style.left = x + 'px';
-      dot.style.top = y + 'px';
-      ring.style.left = x + 'px';
-      ring.style.top = y + 'px';
-      dot.style.transform = 'translate(-50%, -50%)';
-      ring.style.transform = 'translate(-50%, -50%)';
-    }
-
-    document.addEventListener('mousemove', move, { passive: true });
-    document.addEventListener('mouseover', function (event) {
-      var target = event.target;
-      var interactive = target && target.closest && target.closest('a,button,[role="button"],input,textarea,select');
-      dot.classList.toggle('hover', !!interactive);
-      ring.classList.toggle('hover', !!interactive);
-    });
-    document.addEventListener('mouseleave', function () {
-      dot.style.opacity = '0';
-      ring.style.opacity = '0';
-    });
-    document.addEventListener('mouseenter', function () {
-      dot.style.opacity = '';
-      ring.style.opacity = '';
-    });
-  }
-
   function start() {
-    preloader(); header(); navigation(); scrollSpy(); profileImage(); typing(); renderSkills(); renderProjects(); modal(); contact(); marquee(); minecraftCursor(); setTimeout(reveal, 50);
+    preloader(); header(); navigation(); scrollSpy(); profileImage(); typing(); renderSkills(); renderProjects(); modal(); contact(); marquee(); setTimeout(reveal, 50);
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
