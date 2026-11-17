@@ -129,10 +129,15 @@
   function minecraftCursor() {
     var isTouch = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
     if (isTouch) return;
-    var cursorUrl = 'data:image/x-icon;base64,AAACAAEAICAQAAAAAADoAgAAFgAAACgAAAAgAAAAQAAAAAEABAAAAAAAAAIAAAAAAAAAAAAAEAAAAAAAAAAAJT0AAAAAANGlBACcfhAAXkoAAOjDOgAPSXAA/99pAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEREREREREREREREREURERBERERERERERERERERFEREQRERERERERERERERERRDNEEREREREREREREREREUQzRBEREREREUREEREREQBmREQRERERERFERBEREREAZkREERERERERRDNERBEAZgAREREREREREUQzREQRAGYAERERERERERERRDMzRGYAEREREREREREREUQzM0RmABERERERERERERERREQzRBEREREREREREREREUREM0QRERERERERERERESJVd0QzRBEREREREREREREiVXdEM0QREREREREREREiVXdVRDNEERERERERERERIlV3VUQzRBERERERERERIlV3VSIRRDNEERERERERESJVd1UiEUQzRBERERERESJVd1UiERERREQREREREREiVXdVIhEREUREEREREREiVXdVIhERERERERERERERIlV3VSIRERERERERERERIlV3VSIRERERERERERERESJVd1UiERERERERERERESJVd1UiEREREREREREREREiVXdVIhEREREREREREREiVXdVIhERERERERERERERIlV3VSIRERERERERERERESJ3VSIREREREREREREREREid1UiERERERERERERERERIiIiERERERERERERERERESIiIhERERERERERERERERH////A////wP///8D////A//D/AP/w/wD/8AwP//AMD//8AD///AA///8A////AP///AA///wAP//wAD//8AA//8AMD//ADA//AD8P/wA/D/wA///8AP//8AP///AD///AD///wA///wA///8AP///AP///wD///8D////A////w==';
+
+    // Lightweight SVG cursor: sharp cyan pointer with a dark outline and violet accent.
+    var cursorSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M5 3.5 25.5 20l-9.1 1.3-4.5 7.2L5 3.5Z" fill="#07111f" stroke="#e8fbff" stroke-width="2.2" stroke-linejoin="round"/><path d="m8.2 7.4 13.1 10.5-6.1.9-3.1 4.9L8.2 7.4Z" fill="#22d3ee"/><circle cx="25" cy="7" r="3" fill="#8b5cf6" stroke="#fff" stroke-width="1.2"/></svg>';
+    var cursorUrl = 'data:image/svg+xml;base64,' + window.btoa(cursorSvg);
     var style = document.createElement('style');
-    style.id = 'minecraft-sword-cursor-style';
-    style.textContent = 'html,body,body *{cursor:url("' + cursorUrl + '") 2 2, auto !important;} input,textarea,select{cursor:text !important;} button,a,[role="button"]{cursor:url("' + cursorUrl + '") 2 2, pointer !important;}';
+    style.id = 'custom-stylish-cursor-style';
+    style.textContent = 'html,body,body *{cursor:url("' + cursorUrl + '") 5 4, auto !important;} input,textarea,select,[contenteditable="true"]{cursor:text !important;} button,a,[role="button"],input[type="submit"]{cursor:url("' + cursorUrl + '") 5 4, pointer !important;}';
+    var oldStyle = document.getElementById(style.id);
+    if (oldStyle) oldStyle.remove();
     document.head.appendChild(style);
   }
 
