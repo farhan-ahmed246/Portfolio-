@@ -127,13 +127,46 @@
   function marquee() { var track = one('.marquee-track'); if (track) track.innerHTML = track.innerHTML + track.innerHTML; }
 
   function minecraftCursor() {
-    // PNG cursor for broad browser compatibility.
-    if (window.matchMedia && window.matchMedia('(hover: none)').matches) return;
-    var cursorUrl = 'data:image/png;base64,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';
-    var style = document.getElementById('custom-stylish-cursor-style') || document.createElement('style');
-    style.id = 'custom-stylish-cursor-style';
-    style.textContent = 'html,body,body *{cursor:url("' + cursorUrl + '") 5 3, auto !important;} input,textarea,select,[contenteditable="true"]{cursor:text !important;} button,a,[role="button"],input[type="submit"]{cursor:url("' + cursorUrl + '") 5 3, pointer !important;}';
-    document.head.appendChild(style);
+    // Use the portfolio's existing animated dot/ring cursor elements.
+    if (!window.matchMedia || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var dot = document.createElement('div');
+    var ring = document.createElement('div');
+    dot.className = 'cursor-dot';
+    ring.className = 'cursor-ring';
+    dot.setAttribute('aria-hidden', 'true');
+    ring.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(ring);
+    document.body.appendChild(dot);
+    document.documentElement.classList.add('custom-cursor');
+
+    function move(event) {
+      var x = event.clientX;
+      var y = event.clientY;
+      dot.style.left = x + 'px';
+      dot.style.top = y + 'px';
+      ring.style.left = x + 'px';
+      ring.style.top = y + 'px';
+      dot.style.transform = 'translate(-50%, -50%)';
+      ring.style.transform = 'translate(-50%, -50%)';
+    }
+
+    document.addEventListener('mousemove', move, { passive: true });
+    document.addEventListener('mouseover', function (event) {
+      var target = event.target;
+      var interactive = target && target.closest && target.closest('a,button,[role="button"],input,textarea,select');
+      dot.classList.toggle('hover', !!interactive);
+      ring.classList.toggle('hover', !!interactive);
+    });
+    document.addEventListener('mouseleave', function () {
+      dot.style.opacity = '0';
+      ring.style.opacity = '0';
+    });
+    document.addEventListener('mouseenter', function () {
+      dot.style.opacity = '';
+      ring.style.opacity = '';
+    });
   }
 
   function start() {
