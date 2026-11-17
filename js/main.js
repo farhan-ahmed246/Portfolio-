@@ -127,17 +127,15 @@
   function marquee() { var track = one('.marquee-track'); if (track) track.innerHTML = track.innerHTML + track.innerHTML; }
 
   function minecraftCursor() {
-    var isTouch = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
-    if (isTouch) return;
+    // Apply on desktop and hybrid devices; skip only devices with no hover support.
+    if (window.matchMedia && window.matchMedia('(hover: none)').matches) return;
 
-    // Lightweight SVG cursor: sharp cyan pointer with a dark outline and violet accent.
-    var cursorSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M5 3.5 25.5 20l-9.1 1.3-4.5 7.2L5 3.5Z" fill="#07111f" stroke="#e8fbff" stroke-width="2.2" stroke-linejoin="round"/><path d="m8.2 7.4 13.1 10.5-6.1.9-3.1 4.9L8.2 7.4Z" fill="#22d3ee"/><circle cx="25" cy="7" r="3" fill="#8b5cf6" stroke="#fff" stroke-width="1.2"/></svg>';
-    var cursorUrl = 'data:image/svg+xml;base64,' + window.btoa(cursorSvg);
-    var style = document.createElement('style');
+    // Cyan arrow cursor with a dark outline and violet accent.
+    var cursorSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><path d="M5 3 31 23 19 24.5 13 35 5 3Z" fill="#07111f" stroke="#ffffff" stroke-width="2.5" stroke-linejoin="round"/><path d="m9 8 17 13-8 1-4 7L9 8Z" fill="#22d3ee"/><circle cx="31" cy="8" r="4" fill="#8b5cf6" stroke="#ffffff" stroke-width="1.5"/></svg>';
+    var cursorUrl = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(cursorSvg);
+    var style = document.getElementById('custom-stylish-cursor-style') || document.createElement('style');
     style.id = 'custom-stylish-cursor-style';
-    style.textContent = 'html,body,body *{cursor:url("' + cursorUrl + '") 5 4, auto !important;} input,textarea,select,[contenteditable="true"]{cursor:text !important;} button,a,[role="button"],input[type="submit"]{cursor:url("' + cursorUrl + '") 5 4, pointer !important;}';
-    var oldStyle = document.getElementById(style.id);
-    if (oldStyle) oldStyle.remove();
+    style.textContent = 'html,body,body *{cursor:url("' + cursorUrl + '") 5 3, auto !important;} input,textarea,select,[contenteditable="true"]{cursor:text !important;} button,a,[role="button"],input[type="submit"]{cursor:url("' + cursorUrl + '") 5 3, pointer !important;}';
     document.head.appendChild(style);
   }
 
